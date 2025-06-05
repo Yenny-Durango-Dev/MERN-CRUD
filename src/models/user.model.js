@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+}, {
+    timestamps: true, // Agrega createdAt y updatedAt automáticamente
 });
 
 export default mongoose.model("User", userSchema); // Exportar el modelo User para que pueda ser utilizado en otros archivos
