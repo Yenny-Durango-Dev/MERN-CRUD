@@ -56,3 +56,22 @@ export const login = async (req, res) => {
     }
 
 }
+
+export const logout = (req, res) => {
+    res.cookie("token", "", {
+        expires: new Date(0), // Expirar la cookie para cerrar sesión
+    });
+    return res.sendStatus(200); // Enviar un estado 200 OK para indicar que la operación fue exitosa
+}
+
+export const profile = async (req, res) => {
+    const userFound = await User.findById(req.user.id)
+    if (!userFound) return res.status(404).json({ message: "Usuario no encontrado" }); // Si no se encuentra el usuario, enviar un mensaje de error
+    return res.json({
+        id: userFound._id,
+        username: userFound.username,
+        email: userFound.email,
+        createdAt: userFound.createdAt,
+        updatedAt: userFound.updatedAt
+    })
+}
