@@ -28,7 +28,7 @@ export const register = async (req, res) => {
         res, status(500).json({ message: error.message }); // En caso de error, enviar un mensaje de error
     }
 
-}
+} // Registrar un nuevo usuario
 
 export const login = async (req, res) => {
     const { email, password } = req.body
@@ -55,14 +55,14 @@ export const login = async (req, res) => {
         res, status(500).json({ message: error.message }); // En caso de error, enviar un mensaje de error
     }
 
-}
+} // Iniciar sesión de un usuario existente
 
 export const logout = (req, res) => {
     res.cookie("token", "", {
         expires: new Date(0), // Expirar la cookie para cerrar sesión
     });
     return res.sendStatus(200); // Enviar un estado 200 OK para indicar que la operación fue exitosa
-}
+} // Cerrar sesión del usuario
 
 export const profile = async (req, res) => {
     const userFound = await User.findById(req.user.id)
@@ -74,4 +74,4 @@ export const profile = async (req, res) => {
         createdAt: userFound.createdAt,
         updatedAt: userFound.updatedAt
     })
-}
+} // Obtener el perfil del usuario autenticado

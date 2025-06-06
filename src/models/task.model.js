@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -13,8 +13,13 @@ new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User", // Referencia al modelo de usuario
+        required: true, // Campo obligatorio
+    }
 },{
     timestamps: true,
-})
+});
 
 export default mongoose.model("Task", taskSchema); // Exportar el modelo de tarea
