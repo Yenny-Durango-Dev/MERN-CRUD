@@ -9,7 +9,7 @@ import taskRoutes from './routes/tasks.routes.js'; // Importar las rutas de tare
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5174',
+    origin: 'http://localhost:5173',
 }));
 app.use(morgan('dev')); // Middleware para registrar las peticiones HTTP en la consola
 
