@@ -6,6 +6,8 @@ export const register = async (req, res) => {
     const { email, password, username } = req.body
 
     try {
+        const userFound = await User.findOne({ email }) // Buscar si el usuario ya existe en la base de datos
+        if (userFound) return res.status(400).json(["El correo electrónico ya está en uso"]);// Si el usuario existe, devolver un error
 
         const passwordHash = await bcrypt.hash(password, 10) // Encriptar la contraseña antes de guardarla
         const newUser = new User({

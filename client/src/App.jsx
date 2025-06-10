@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 
-import RegisterPage from "./pages/registerPage";
-import LoginPage from "./pages/loginPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+
 function App() {
   return (
     <AuthProvider>

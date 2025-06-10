@@ -2,29 +2,29 @@ import { z } from 'zod'
 
 export const registerSchema = z.object({
     username: z.string({
-        required_error: "Username is required"
+        required_error: "El nombre de usuario es requerido",
     }),
     email: z.string({
-        required_error: "Email is required"
+        required_error: "El email es requerido"
     }).email({
-        message: "Invalid email format"
+        message: "El email no es válido"
     }),
     password: z.string({
-        required_error: "Password is required"
+        required_error: "La contraseña es requerida"
     }).min(6, {
-        message: "Password must be at least 6 characters long"
+        message: "La contraseña debe tener al menos 6 caracteres"
     }),
 });
 
 export const loginSchema = z.object({
     email: z.string({
-        required_error: "Email is required"
+        required_error: "El email es requerido"
     }).email({
-        message: "Invalid email format"
+        message: "El email no es válido"
     }),
     password: z.string({
-        required_error: "Password is required"
+        required_error: ":La contraseña es requerida"
     }).min(6, {
-        message: "Password must be at least 6 characters long"
+        message: "La contraseña debe tener al menos 6 caracteres"
     }),
 })
