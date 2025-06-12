@@ -1,6 +1,8 @@
 import User from '../models/user.model.js'; // Importar el modelo User
 import bcrypt from 'bcryptjs'; // Importar bcryptjs para encriptar la contraseña
 import { createAccessToken } from '../libs/jwt.js'; // Importar la función para crear un token JWT
+import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET } from '../config.js';
 
 export const register = async (req, res) => {
     const { email, password, username } = req.body
@@ -75,5 +77,24 @@ export const profile = async (req, res) => {
         email: userFound.email,
         createdAt: userFound.createdAt,
         updatedAt: userFound.updatedAt
-    })
-} // Obtener el perfil del usuario autenticado
+    });
+}; // Obtener el perfil del usuario autenticado
+
+export const verifyToken = async (req, res) => {
+    const { token } = req.cookies
+    if (!token) return res.status(401).json({ message: "Usuario no autorizado" })
+    jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+        if (err) return res.status(401).json({ message: "Usuario no autorizado" });
+
+        const userFound = await User.findById(user.id)
+        if (!userFound) return res.status(401).json({ message: "Usuario no autorizado" });
+
+        return res.json({
+            id: userFound._id,
+            username: userFound.username,
+            email: userFound.email,
+        });
+    });
+};
+
+// este archivo sirve para exportar las funciones de autenticación, para que puedan ser utilizadas en otros archivos de la aplicación.
