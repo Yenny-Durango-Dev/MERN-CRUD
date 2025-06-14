@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
 
             if (!cookies.token) {
                 setIsAuthenticated(false);
+                setLoading(false);
                 return setUser(null);
             }
 
@@ -68,9 +69,11 @@ export const AuthProvider = ({ children }) => {
                 }
                 setIsAuthenticated(true)
                 setUser(res.data)
+                setLoading(false)
             } catch (error) {
                 setIsAuthenticated(false)
                 setUser(null)
+                setLoading(false)
             }
         }
         checkLogin();
@@ -81,6 +84,7 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={{
             signup,
             signin,
+            loading,
             user,
             isAuthenticated,
             errors,

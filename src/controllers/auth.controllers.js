@@ -97,4 +97,4 @@ export const verifyToken = async (req, res) => {
     });
 };
 
-// este archivo sirve para exportar las funciones de autenticación, para que puedan ser utilizadas en otros archivos de la aplicación.
+// Este archivo sirve para exportar las funciones de autenticación y autorización, para que puedan ser utilizadas en otras partes de la aplicación.

@@ -17,3 +17,5 @@ router.get('/verify', verifyToken);
 router.get('/profile', authRequired, profile);
 
 export default router; // Exportar el router para que pueda ser utilizado en otros archivos
+
+// Este archivo sirve para configurar las rutas de autenticación para la aplicación. Los métodos GET, POST, PUT, DELETE, etc. se definen aquí. Por ejemplo, para crear una ruta que permita el registro de un usuario, se puede utilizar el método POST y el path '/register'.

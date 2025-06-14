@@ -1,15 +1,15 @@
 import { Navigate, Outlet } from "react-router-dom"
 import { useAuth } from "./context/AuthContext"
 
-
-useAuth
-
 const ProtectedRoute = () => {
-    const { user, isAuthenticated } = useAuth()
-    console.log(user, isAuthenticated)
-    if (!isAuthenticated) return <Navigate to='/login' replace />
+    const { loading, isAuthenticated } = useAuth();
 
-    return <Outlet />
+    if (loading) return <h1>Loading ...</h1>
+    if (!loading && !isAuthenticated) return <Navigate to='/login' replace />;
+
+    return <Outlet />;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;
+
+// Este archivo sirve para proteger las rutas que se encuentran dentro de este componente, si el usuario no está autenticado, se redirige a la ruta de login, si está autenticado, se muestra el contenido de la ruta protegida.
