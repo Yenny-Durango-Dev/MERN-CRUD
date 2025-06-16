@@ -10,7 +10,7 @@ export const getTaskRequest = (id) => axios.get(`/tasks/${id}`);
 export const createTaskRequest = (task) => axios.post('/tasks', task);
 
 //  actualizar una tarea
-export const updateTaskRequest = (task) => axios.put(`/tasks/${task._id}`, task);
+export const updateTaskRequest = (id, task) => axios.put(`/tasks/${id}`, task);
 
 //  eliminar una tarea
 export const deleteTaskRequest = (id) => axios.delete(`/tasks/${id}`);
